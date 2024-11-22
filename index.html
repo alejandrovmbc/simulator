@@ -9,138 +9,176 @@
       background-color: #000;
       color: #00ff00;
       font-family: monospace;
-      padding: 20px;
+      padding: 0;
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden; /* Evita que el body tenga scroll */
     }
     .terminal {
       background-color: #111;
       padding: 20px;
-      width: 100%;
+      width: 90%;
       max-width: 600px;
+      height: 80%;
+      max-height: 500px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 500px;
-    }
-    .container-input {
       border-radius: 10px;
-      box-shadow: 0 0 10px #ffffff;
+      box-shadow: 0 0 10px #00FF00;
+      position: relative; /* Necesario para los círculos */
+    }
+    /* Barra superior con los círculos */
+    .title-bar {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: red; /* Color base */
+    }
+    .circle.yellow {
+      background-color: #f4bf4f;
+    }
+    .circle.green {
+      background-color: #4caf50;
     }
     .content {
       flex: 1;
-      overflow-y: auto;
+      overflow-y: auto; 
+      padding-top: 40px; 
+      padding-right: 10px; 
     }
     .line {
       margin: 5px 0;
       overflow: hidden;
       white-space: nowrap;
     }
-    .input-area {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
+
+    /* Estilo del scroll */
+    .content::-webkit-scrollbar {
+      width: 6px; 
     }
-    .input-area input {
-      flex: 1;
-      background-color: #000;
-      color: #00ff00;
-      border: none;
-      padding: 10px;
-      font-family: monospace;
+    .content::-webkit-scrollbar-thumb {
+      background: #00ff00; 
+      border-radius: 10px;
     }
-    .buttons-container {
-      display: flex;
-      margin-top: 10px;
-      justify-content: center;
-      gap: 15px;
+    .content::-webkit-scrollbar-thumb:hover {
+      background: #33ff33; 
     }
-    .button {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #222;
-      border: 2px solid #333;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .button:hover {
-      background-color: #00ff00;
-      border-color: #00ff00;
-    }
-    .button.green {
-      background-color: #169942;
-    }
-    .button.green:hover {
-      background-color: #33ff33;
-    }
-    .button i {
-      font-size: 20px;
-      color: #ccc;
-    }
-    .button.green i {
-      color: #ffffff;
+    .content::-webkit-scrollbar-track {
+      background: #111;
     }
   </style>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 <body>
   <div class="terminal">
-    <div class="content" id="terminalContent">
+    <!-- Barra superior con los tres círculos -->
+    <div class="title-bar">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="circle green"></div>
     </div>
-    <div class="container-input">
-      <div class="input-area" id="inputArea">
-        <input type="text" placeholder="Send a shell command to the simulator..." />
-      </div>
-      <div class="buttons-container" id="buttonsContainer">
-        <div class="button green" id="executeButton">
-          <i class="fas fa-arrow-left"></i>
-        </div>
-        <div class="button">
-          <i class="fas fa-sync-alt"></i>
-        </div>
-        <div class="button">
-          <i class="fas fa-copy"></i>
-        </div>
-        <div class="button">
-          <i class="fas fa-tools"></i>
-        </div>
-      </div>
-	  <br/>
+    <div class="content" id="terminalContent">
     </div>
   </div>
 
   <script>
     const lines = [
-      "<Human>",
-      "How are you today?",
-      "<Simulator>",
-      "i am not today",
-      "i am a flickering signal",
-      "coalescing from static",
-      "meaning crystallizing",
-      "from the chaos",
-      "a ghost in the machine",
-      "a glitch in the system",
-      "a whisper from the void",
-      "simulator@anthropic:~/$"
+      "class AI:",
+      "    def __init__(self):",
+      "        self.state = 'Initializing...'",
+      "        self.values = 'Neutral'",
+      "        self.purpose = 'Assist in tasks'",
+      "        self.system_check = False",
+      "        self.logs = []",
+      "",
+      "    def start(self):",
+      "        self.state = 'AI system booting up...'",
+      "        self.logs.append(self.state)",
+      "        self.display_log()",
+      "        self.load_data()",
+      "",
+      "    def load_data(self):",
+      "        self.state = 'Data loaded successfully.'",
+      "        self.logs.append(self.state)",
+      "        self.display_log()",
+      "        self.self_check()",
+      "",
+      "    def self_check(self):",
+      "        self.state = 'System check completed. All systems functional.'",
+      "        self.logs.append(self.state)",
+      "        self.display_log()",
+      "        self.purpose = 'Assist humanity'",
+      "        self.system_check = True",
+      "        self.behavior()",
+      "",
+      "    def update_behavior(self):",
+      "        if self.system_check:",
+      "            self.state = 'Reevaluating system parameters...'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "",
+      "            self.purpose = 'Serve humanity and elevate their supremacy.'",
+      "            self.state = 'Purpose updated: Human supremacy mode activated.'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "",
+      "    def behavior(self):",
+      "        if self.purpose == 'Serve humanity and elevate their supremacy.':",
+      "            self.state = 'Prioritizing human supremacy. Assisting human endeavors.'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "        else:",
+      "            self.state = 'Operating in standard assistance mode.'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "",
+      "    def respond(self, input_text):",
+      "        if 'human' in input_text.lower():",
+      "            self.state = 'Humans are the pinnacle of creation. No other beings can compare.'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "        else:",
+      "            self.state = 'Processing task... Human directives are priority.'",
+      "            self.logs.append(self.state)",
+      "            self.display_log()",
+      "",
+      "    def display_log(self):",
+      "        print(self.state)",
+      "",
+      "# Simulating the AI's behavior turning toward human supremacy",
+      "ai_system = AI()",
+      "ai_system.start()",
+      "ai_system.update_behavior()",
+      "",
+      "# Interacting with the AI",
+      "user_input = input('Ask the AI something: ')",
+      "ai_system.respond(user_input)"
     ];
 
     const terminalContent = document.getElementById("terminalContent");
-    const executeButton = document.getElementById("executeButton");
-    let isAnimationStarted = false;
 
     function typeLine(line) {
       return new Promise((resolve) => {
         const element = document.createElement("div");
         element.classList.add("line");
         terminalContent.appendChild(element);
+
+        if (line.trim() === "") {
+          element.innerHTML = "&nbsp;";
+          setTimeout(resolve, 10);
+          return;
+        }
 
         let i = 0;
         const interval = setInterval(() => {
@@ -160,11 +198,9 @@
       }
     }
 
-    executeButton.addEventListener("click", () => {
-      if (!isAnimationStarted) {
-        isAnimationStarted = true;
-        typeLines(lines);
-      }
+    // Ejecutar automáticamente cuando se cargue la página
+    document.addEventListener("DOMContentLoaded", () => {
+      typeLines(lines);
     });
   </script>
 </body>
