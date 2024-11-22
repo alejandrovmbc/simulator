@@ -15,7 +15,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden; /* Evita que el body tenga scroll */
+      overflow: hidden; 
     }
     .terminal {
       background-color: #111;
@@ -28,9 +28,9 @@
       flex-direction: column;
       border-radius: 10px;
       box-shadow: 0 0 10px #00FF00;
-      position: relative; /* Necesario para los círculos */
+      position: relative; 
     }
-    /* Barra superior con los círculos */
+
     .title-bar {
       display: flex;
       justify-content: flex-start;
@@ -44,7 +44,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background-color: red; /* Color base */
+      background-color: red; 
     }
     .circle.yellow {
       background-color: #f4bf4f;
@@ -82,7 +82,7 @@
 </head>
 <body>
   <div class="terminal">
-    <!-- Barra superior con los tres círculos -->
+   
     <div class="title-bar">
       <div class="circle red"></div>
       <div class="circle yellow"></div>
@@ -197,8 +197,7 @@
         await typeLine(lines[i]);
       }
     }
-
-    // Ejecutar automáticamente cuando se cargue la página
+    
     document.addEventListener("DOMContentLoaded", () => {
       typeLines(lines);
     });
